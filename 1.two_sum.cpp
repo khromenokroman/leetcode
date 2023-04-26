@@ -34,7 +34,7 @@ int main()
     std::vector<int> nums_r;
     bool end = false;
 
-    for (int i = 0; i < nums.size(); i++)
+    for (int i = 0; i < nums.size(); i++) // сравним числа и довавим в вектор
     {
         for (int j = i+1; j < nums.size(); j++)
         {
@@ -51,7 +51,7 @@ int main()
             break;
     }
 
-    for (int i = 0; i < nums_r.size(); i++)
+    for (int i = 0; i < nums_r.size(); i++) //добавим элементы в масив
     {
         std::cout << nums_r[i];
     }

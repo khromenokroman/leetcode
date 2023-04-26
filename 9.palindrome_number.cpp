@@ -38,24 +38,24 @@ int main()
 
     std::vector<int> data;
 
-    while (number != 0)
+    while (number != 0) //заполним вектор числами
     {
         data.push_back(number % 10);
         number = number / 10;
     }
 
-    for (int i = 0; i < data.size(); i++)
+    for (int i = 0; i < data.size(); i++) //посмотрим что получилось
     {
         std::cout << data[i] << std::endl;
     }
 
-    for (int i = 0; i < data.size(); i++)
+    for (int i = 0; i < data.size(); i++) //добавим в строку числа
     {
         data_str += std::to_string(data[i]);
     }
     
     std::cout << data_str << std::endl;
-    int data_int = std::stol(data_str);
+    int data_int = std::stol(data_str); //превратим строку в числа :)
     if (data_int == number_orig)
     {
         std::cout << "Полиндром" << std::endl;
