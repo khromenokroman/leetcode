@@ -61,6 +61,28 @@ class Solution {
         return prefix;
     }
 
+    // Альтернативный вариант
+    /*std::string find_prefix(std::vector<std::string>& vector_words) {
+        std::string prefix{};
+        bool end{false};
+        std::string first_word = vector_words[0];
+        for (auto i = 0; i < first_word.size(); i++) {
+            if (end) {
+                break;
+            }
+            char symbol = first_word[i];
+            std::ranges::for_each(vector_words, [&symbol, &i, &end](std::string const& word) {
+                if (symbol != word[i]) {
+                    end = true;
+                }
+            });
+            if (!end) {
+                prefix += first_word[i];
+            }
+        }
+        return prefix;
+    }*/
+
     std::string longestCommonPrefix(std::vector<std::string>& strs) {
         sotr_vector(strs);
         return find_prefix(strs);
