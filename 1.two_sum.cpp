@@ -1,15 +1,17 @@
-#include<iostream>
-#include<vector>
-#include<map>
+#include <iostream>
+#include <map>
+#include <vector>
 
 /*
-Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+Given an array of integers nums and an integer target, return indices of the two
+numbers such that they add up to target.
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You may assume that each input would have exactly one solution, and you may not
+use the same element twice.
 
 You can return the answer in any order.
 
- 
+
 
 Example 1:
 
@@ -27,35 +29,29 @@ Output: [0,1]
 
 */
 
-int main()
-{
-    int target = 6;
-    std::vector<int> nums = {3,3};
-    std::vector<int> nums_r;
-    bool end = false;
+int main() {
+  int target = 6;
+  std::vector<int> nums = {3, 3};
+  std::vector<int> nums_r;
+  bool end = false;
 
-    for (int i = 0; i < nums.size(); i++) // сравним числа и довавим в вектор
-    {
-        for (int j = i+1; j < nums.size(); j++)
-        {
-            if (nums[i]+nums[j] == target)
-            {
-                
-                nums_r.push_back(i);
-                nums_r.push_back(j);
-                end = true;
-                // return nums_r;
-            }
-        }
-        if (end)
-            break;
+  for (int i = 0; i < nums.size(); i++) // сравним числа и довавим в вектор
+  {
+    for (int j = i + 1; j < nums.size(); j++) {
+      if (nums[i] + nums[j] == target) {
+
+        nums_r.push_back(i);
+        nums_r.push_back(j);
+        end = true;
+        // return nums_r;
+      }
     }
+    if (end)
+      break;
+  }
 
-    for (int i = 0; i < nums_r.size(); i++) //добавим элементы в масив
-    {
-        std::cout << nums_r[i];
-    }
-    
-    
-
+  for (int i = 0; i < nums_r.size(); i++) // добавим элементы в масив
+  {
+    std::cout << nums_r[i];
+  }
 }
