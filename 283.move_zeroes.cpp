@@ -37,14 +37,29 @@ Follow up: Could you minimize the total number of operations done?
 
 class Solution {
    public:
+    static int check_zero(size_t index, std::vector<int> const& vec) {
+        for (auto i = index; i < vec.size(); i++) {
+            if (vec[i] != 0) {
+                return static_cast<int>(i);
+            }
+        }
+        return -1;
+    }
     void moveZeroes(std::vector<int>& nums) {
         auto size_vec = nums.size();
         for (auto i = 0; i < size_vec; i++) {
             if (nums[i] == 0) {
-                for (int j = i + 1; j < size_vec; j++) {
-                    if (nums[j] != 0) {
-                        std::swap(nums[i], nums[j]);
-                        break;
+                if (i + 1 < size_vec) {
+                    int index = 0;
+                    if (nums[i + 1] == 0) {
+                        index = check_zero(i, nums);
+                        if (index == -1) {
+                            break;
+                        }
+                        std::swap(nums[i], nums[index]);
+                        index = 0;
+                    } else {
+                        std::swap(nums[i], nums[i + 1]);
                     }
                 }
             }
@@ -54,10 +69,10 @@ class Solution {
 
 int main() {
     Solution sol;
-    //    std::vector<int> vec{0, 1, 2, 3};
-    //    std::vector<int> vec{0, 1, 2, 3, 0};
-    //    std::vector<int> vec{0, 1, 0, 2, 3, 0};
-    std::vector<int> vec{0};
+    //        std::vector<int> vec{0, 1, 2, 3};
+    //        std::vector<int> vec{0, 1, 2, 3, 0};
+    std::vector<int> vec{0, 1, 0, 2, 3, 0};
+    //    std::vector<int> vec{0};
     sol.moveZeroes(vec);
 
     std::ranges::for_each(vec, [](auto const& item) { std::cout << item << "\t"; });
