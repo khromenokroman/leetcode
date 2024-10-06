@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        1768.merge_strings_alternately.cpp)
+        389.find_the_difference.cpp)
