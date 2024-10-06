@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        14.longest_common_prefix.cpp)
+        1768.merge_strings_alternately.cpp)
