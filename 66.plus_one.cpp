@@ -43,67 +43,39 @@ digits does not contain any leading 0's.
 
 #include <algorithm>
 #include <iostream>
+#include <list>
 #include <ranges>
 #include <vector>
-#include <list>
 
 class Solution {
    public:
    public:
     std::vector<int> plusOne(std::vector<int>& digits) {
-        std::vector<int> vec;
-        vec.reserve(digits.size() + 1);
-        std::list<int> list;
-
-        int overflow = 0, sum = 0;
-        for (auto i = static_cast<int>(digits.size()) - 1; i >= 0; i--) {
-            if (overflow == 0 and i == digits.size() - 1) {
-                sum = digits[i] + 1;
-                if (sum >= 10) {
-                    overflow = 1;
-//                    std::cout << 0 << " ";
-                    list.push_front(0);
-                } else {
-                    overflow = 0;
-//                    std::cout << sum << " ";
-                    list.push_front(sum);
+        auto size_vec = static_cast<int>(digits.size());
+        for (auto i = size_vec - 1; i >= 0; i--) {
+            if (i == size_vec - 1) {
+                digits[i]++;
+            }
+            if (digits[i] == 10) {
+                digits[i] = 0;
+                if (i > 0) {
+                    digits[i - 1]++;
                 }
-            } else if (overflow == 0) {
-                overflow = 0;
-//                std::cout << digits[i] << " ";
-                list.push_front(digits[i]);
-            } else {
-                sum = digits[i] + 1;
-                if (sum >= 10) {
-                    overflow = 1;
-//                    std::cout << 0 << " ";
-                    list.push_front(0);
-                } else {
-                    overflow = 0;
-//                    std::cout << sum << " ";
-                    list.push_front(sum);
+                if (i == 0) {
+                    digits.push_back(0);
+                    digits[i] = 1;
                 }
             }
         }
-        if(overflow == 1){
-//            std::cout << 1 << " ";
-            list.push_front(1);
-        }
-        std::cout << std::endl;
 
-//        auto print = [](auto const& item) { std::cout << item << " "; };
-//        std::ranges::for_each(list, print);
-
-        std::ranges::for_each(list, [&vec](auto & item){vec.emplace_back(std::move(item));});
-
-        return vec;
+        return digits;
     }
 };
 
 int main() {
     Solution sol;
-//    std::vector<int> vec_digits{9, 9, 9, 9, 9};
-    std::vector<int> vec_digits{1, 2, 3, 4, 9};
+    std::vector<int> vec_digits{9, 9, 9, 9, 9};
+    //    std::vector<int> vec_digits{1, 2, 3, 4, 9};
     auto print = [](auto const& item) { std::cout << item << " "; };
 
     std::ranges::for_each(vec_digits, print);
