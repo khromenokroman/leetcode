@@ -37,30 +37,27 @@ Constraints:
 #include <ranges>
 #include <vector>
 
+// 128 8.72  99.17 84.68
 class Solution {
    public:
     bool isMonotonic(std::vector<int>& nums) {
         bool status_up{true};
         bool status_down{true};
 
-        std::ranges::for_each(std::views::iota(0) | std::views::take(nums.size()), [&nums, &status_up](auto const& i) {
+        std::ranges::for_each(std::views::iota(0) | std::views::take(nums.size()), [&nums, &status_up,&status_down](auto const& i)  {
             if (i != nums.size() - 1) {
                 if (nums[i] <= nums[i + 1]) {
                 } else {
                     status_up = false;
                 }
             }
+            if (i != nums.size() - 1) {
+                if (nums[i] >= nums[i + 1]) {
+                } else {
+                    status_down = false;
+                }
+            }
         });
-
-        std::ranges::for_each(std::views::iota(0) | std::views::take(nums.size()),
-                              [&nums, &status_down](auto const& i) {
-                                  if (i != nums.size() - 1) {
-                                      if (nums[i] >= nums[i + 1]) {
-                                      } else {
-                                          status_down = false;
-                                      }
-                                  }
-                              });
 
         return status_up or status_down;
     }
