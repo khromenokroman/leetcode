@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        1502.can_make_arithmetic_progression_from_sequence.cpp)
+        58.length_of_last_word.cpp)
