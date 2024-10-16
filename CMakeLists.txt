@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        58.length_of_last_word.cpp)
+        709.to_lower_case.cpp)
