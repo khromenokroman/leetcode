@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        682.baseball_game.cpp)
+        657.robot_return_to_origin.cpp)
