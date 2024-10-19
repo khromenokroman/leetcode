@@ -43,27 +43,27 @@ class Solution {
    public:
     bool judgeCircle(std::string moves) {
         int left = 0, right = 0, up = 0, down = 0;
-        std::ranges::for_each(moves, [&moves, &up, &down, &left, &right](auto const& symbol) {
-            if (symbol == 'U'){
+        for (auto i = 0; i < moves.size(); i++) {
+            if (moves[i] == 'U') {
                 ++up;
-            }else if (symbol == 'D') {
+            } else if (moves[i] == 'D') {
                 ++down;
-            } else if (symbol == 'L') {
+            } else if (moves[i] == 'L') {
                 ++left;
-            } else if (symbol == 'R') {
+            } else if (moves[i] == 'R') {
                 ++right;
             }
-        });
-        if (up == down && left == right){
+        };
+        if (up == down && left == right) {
             return true;
-        } else{
+        } else {
             return false;
         }
     }
 };
 
 int main() {
-//    std::string str{"UD"};
+    //    std::string str{"UD"};
     std::string str{"LL"};
     Solution sol;
     std::cout << sol.judgeCircle(str) << std::endl;
