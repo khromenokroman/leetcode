@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        1572.matrix_diagonal_sum.cpp)
+        54.spiral_matrix.cpp)
