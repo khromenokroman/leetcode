@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        templates/variadic.cpp)
+        1672.richest_customer_wealth.cpp)
