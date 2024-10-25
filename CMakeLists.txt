@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        1041.robot_bounded_in_circle.cpp)
+        templates/variadic.cpp)
