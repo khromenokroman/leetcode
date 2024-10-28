@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        976.largest_perimeter_triangle.cpp)
+        148.sort_list.cpp)
