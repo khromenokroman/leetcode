@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        73.set_matrix_zeroes.cpp)
+        1523.count_odd_numbers_in_an_interval_range.cpp)
