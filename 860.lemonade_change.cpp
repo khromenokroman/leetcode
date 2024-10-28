@@ -50,7 +50,6 @@ class Solution {
         int money_paper10 = 0;
         int money_paper20 = 0;
         for (auto i = 0; i < bills.size(); i++) {
-            std::cout << "bills[i]: " << bills[i] << '\n';
             switch (bills[i]) {
                 case 5:
                     money_paper5++;
