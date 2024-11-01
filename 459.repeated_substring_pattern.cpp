@@ -35,27 +35,16 @@ s consists of lowercase English letters.
 class Solution {
    public:
     bool repeatedSubstringPattern(std::string s) {
-        int size_str = (int)s.length();
-        for (int i = 1; i <= size_str / 2; i++) {
-            if (size_str % i == 0) {
-                auto substr = s.substr(0, i);
-                std::string repeated{};
-                for (int j = 0; j < size_str / i; j++) {
-                    repeated += substr;
-                }
-                if (repeated == s) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        std::string new_str = s + s;
+        auto new_s = new_str.substr(1, new_str.size() - 2);
+        return new_s.find(s) != std::string::npos;
     };
 };
 int main() {
-    std::string s{"abab"};
+    //    std::string s{"abab"};
     //        std::string s{"abcabcabcabc"};
     //        std::string s{"aba"};
-    //    std::string s{"ababba"};
+    std::string s{"ababba"};
     Solution sol;
     std::cout << sol.repeatedSubstringPattern(s) << std::endl;
     return 0;
