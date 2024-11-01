@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        21.merge_two_sorted_lists.cpp)
+        206.reverse_linked_list.cpp)
