@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        459.repeated_substring_pattern.cpp)
+        67.add_binary.cpp)
