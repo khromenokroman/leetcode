@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        1232.check_if_it_is_a_straight_line.cpp)
+        704.binary_search.cpp)
