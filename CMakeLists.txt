@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        35.search_insert_position.cpp)
+        744.find_smallest_letter_greater_than_target.cpp)
