@@ -4,4 +4,4 @@ project(leetcode)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(${PROJECT_NAME}
-        1351.count_negative_numbers_in_a_sorted_matrix.cpp)
+        34.find_first_and_last_position_of_element_in_sorted_array.cpp)
