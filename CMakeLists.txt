@@ -9,4 +9,6 @@ message(STATUS "CXX Compiler : ${CMAKE_CXX_COMPILER}")
 message(STATUS "CXX Compiler path : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CXX Compiler version : ${CMAKE_CXX_COMPILER_VERSION}")
 
-add_executable(${PROJECT_NAME} 88.merge_sorted_array.cpp)
+add_executable(${PROJECT_NAME}
+        136.single_number.cpp
+)
