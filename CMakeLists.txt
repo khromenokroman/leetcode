@@ -10,5 +10,5 @@ message(STATUS "CXX Compiler path : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CXX Compiler version : ${CMAKE_CXX_COMPILER_VERSION}")
 
 add_executable(${PROJECT_NAME}
-        test2.cpp
+        qsort.cpp
 )
