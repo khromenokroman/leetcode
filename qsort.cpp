@@ -1,85 +1,100 @@
 #include <algorithm>
 #include <array>
+#include <cassert>
 #include <iostream>
 #include <vector>
 
-std::vector<int> qsort(std::vector<int> const& arr) {
-    if (arr.empty()) {
-        return arr;
-    }
-    if (arr.size() == 1) {
-        return arr;
-    }
-
-    std::vector<int> left;
-    std::vector<int> right;
-    int pivot = arr[0];
-
-    for (auto i = 1; i < arr.size(); i++) {
-        if (arr[i] < pivot) {
-            left.emplace_back(arr[i]);
+void merge_data(std::vector<int> &left, std::vector<int> &right, std::vector<int> &result) {
+    size_t left_index = 0;
+    size_t right_index = 0;
+    size_t result_index = 0;
+    while (left_index < left.size() && right_index < right.size()) {
+        if (left[left_index] < right[right_index]) {
+            result[result_index++] = left[left_index++];
         } else {
-            right.emplace_back(arr[i]);
+            result[result_index++] = right[right_index++];
         }
     }
-
-    std::vector<int> res = qsort(left);
-    res.emplace_back(pivot);
-    std::vector<int> res2 = qsort(right);
-    res.insert(res.end(), res2.begin(), res2.end());
-    return res;
-}
-
-void merge(std::vector<int>& left, std::vector<int>& right, std::vector<int>& arr) {
-    size_t ind_left = 0;
-    size_t ind_right = 0;
-    size_t ind_arr = 0;
-    while (ind_left < left.size() && ind_right < right.size()) {
-        if (left[ind_left] < right[ind_right]) {
-            arr[ind_arr++] = left[ind_left++];
-        } else {
-            arr[ind_arr++] = right[ind_right++];
-        }
+    while (left_index < left.size()) {
+        result[result_index++] = left[left_index++];
     }
-    while (ind_left < left.size()) {
-        arr[ind_arr++] = left[ind_left++];
-    }
-    while (ind_right < right.size()) {
-        arr[ind_arr++] = right[ind_right++];
+    while (right_index < right.size()) {
+        result[result_index++] = right[right_index++];
     }
 }
 
-void msort(std::vector<int>& arr) {
-    if (arr.size() < 2) {
+void msort(std::vector<int> &result) {
+    if (result.size() < 2) {
         return;
     }
-    size_t border = arr.size() / 2;
-
-    // add vector left
+    // чтобы не было лишних аллокаций
     std::vector<int> left;
-    left.reserve(border);
-    for (auto i = 0; i < border; i++) {
-        left.emplace_back(arr[i]);
-    }
-
-    // add vector right
+    left.reserve(result.size());
     std::vector<int> right;
-    right.reserve(arr.size() - border);
-    for (auto i = border; i < arr.size(); i++) {
-        right.emplace_back(arr[i]);
+    right.reserve(result.size());
+
+    // распределение элементов
+    int border = result.size() / 2;
+    for (auto i = 0; i < result.size(); i++) {
+        if (i < border) {
+            left.emplace_back(result[i]);
+        } else {
+            right.emplace_back(result[i]);
+        }
     }
 
-    // recursive sort
+    // сортировка
     msort(left);
     msort(right);
 
-    // merge
-    merge(left, right, arr);
+    // надежда что все будет ок
+    assert(left.size() + right.size() == result.size());
+
+    // объеденим данные
+    merge_data(left, right, result);
+}
+
+void qsort(std::vector<int> &result) {
+    if (result.size() < 2) {
+        return;
+    }
+    // чтобы не было лишних аллокаций
+    std::vector<int> less;
+    less.reserve(result.size());
+    std::vector<int> greater;
+    greater.reserve(result.size());
+
+    // распределение элементов
+    int border = result[0];
+    for (auto i = 1; i < result.size(); i++) {
+        if (result[i] < border) {
+            less.emplace_back(result[i]);
+        } else {
+            greater.emplace_back(result[i]);
+        }
+    }
+
+    // сортировка
+    qsort(less);
+    qsort(greater);
+
+    // надежда что все будет ок
+    assert(less.size() + greater.size() + 1 == result.size());
+
+    // заполним результирующий массив
+    size_t index_result = 0;
+    for (auto item : less) {
+        result[index_result++] = item;
+    }
+    result[index_result++] = border; // если тут будет массив то довить надо его весь
+    for (auto item : greater) {
+        result[index_result++] = item;
+    }
 }
 
 int main() {
-    std::vector<int> arr{0, 10, 2, 5, 4, 3, 1, 6, 7, 8, 9};
-    // auto vec = qsort(arr);
+    std::vector<int> arr{123,12,3,5,77,8,2,345,7,4,2,2,0};
+    // qsort(arr);
     msort(arr);
     for (auto const item : arr) {
         std::cout << item << '\t';
